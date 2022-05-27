@@ -5,6 +5,40 @@
 
 ![Requirements and Plan](https://github.com/dashaun/spring-office-hours-example-001/blob/main/readme.png?raw=true)
 
+## Summary
+
+- Connect to a [3rd party API](https://api.sunrise-sunset.org/)
+- Store the data
+- Send the data to a different API
+
+## Initializer
+
+- Post coordinates to API
+- Gets response data for coordinates
+- Pushes response data to RabbitMQ
+
+## Processor
+
+- Listens to RabbitMQ for data
+- Sends data to `sink`
+
+## Sink
+
+- Collects data
+
+### Using HTTPie
+
+```bash
+#Send LatLon
+http --raw='{"lat":"36.7201600","lon":"4.4203400"}' :8080/sunriseSunset
+```
+
+### Analyze memory with OS X
+
+- Use `jps` to get the java processes
+- Use `vmmap -summary PID | grep "Physical footprint:"` to show the memory usage
+
+
 ### Before the show
 
 ```bash
